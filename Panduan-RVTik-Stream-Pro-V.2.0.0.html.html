@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RVTik Stream Pro — Panduan Pengguna</title>
+  <style>
+    :root {
+      --bg: #0f1020;
+      --bg-soft: #17182d;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --text: #f7f7fb;
+      --muted: #b9bed6;
+      --line: rgba(255, 255, 255, 0.12);
+      --primary: #8b5cf6;
+      --primary-2: #ec4899;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+      --sidebar-w: 320px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(139, 92, 246, 0.35), transparent 34%),
+        radial-gradient(circle at 85% 12%, rgba(236, 72, 153, 0.30), transparent 30%),
+        linear-gradient(135deg, #0b0c18 0%, #101124 48%, #17132a 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px;
+      border-right: 1px solid var(--line);
+      background: rgba(10, 11, 22, 0.80);
+      backdrop-filter: blur(20px);
+      overflow-y: auto;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: 0.2px;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .search-box {
+      margin: 18px 0;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      padding: 14px 16px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .search-box input::placeholder {
+      color: rgba(185, 190, 214, 0.78);
+    }
+
+    .nav-title {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      margin: 22px 10px 10px;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .nav-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 12px;
+      border-radius: 15px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+      font-size: 14px;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text);
+      background: var(--panel-strong);
+      border-color: var(--line);
+    }
+
+    .nav-link small {
+      opacity: 0.55;
+      font-size: 11px;
+    }
+
+    .content {
+      padding: 32px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(236, 72, 153, 0.16)),
+        rgba(255, 255, 255, 0.08);
+      padding: clamp(28px, 5vw, 56px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -80px;
+      top: -80px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.09);
+      color: #f2e7ff;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 790px;
+      font-size: clamp(34px, 6vw, 68px);
+      line-height: 0.95;
+      letter-spacing: -2.8px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 18px;
+      line-height: 1.75;
+      margin: 22px 0 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      padding: 13px 18px;
+      border-radius: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      color: var(--text);
+      background: var(--panel-strong);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      border: 0;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin: 22px 0 0;
+    }
+
+    .quick-card,
+    .section,
+    .tip,
+    .trouble-card,
+    .faq-item {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.16);
+    }
+
+    .quick-card {
+      padding: 20px;
+    }
+
+    .quick-card span {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(139, 92, 246, 0.22);
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+
+    .quick-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .quick-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .section {
+      margin-top: 24px;
+      padding: clamp(22px, 4vw, 36px);
+      scroll-margin-top: 24px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .section-kicker {
+      color: #d8c7ff;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 42px);
+      letter-spacing: -1.2px;
+    }
+
+    h3 {
+      margin-top: 28px;
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    p, li {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    ul, ol {
+      padding-left: 22px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+      color: #e8e8ff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      font-weight: 900;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      margin: 0;
+    }
+
+    .tip {
+      padding: 18px;
+      margin: 18px 0;
+      border-left: 4px solid var(--warning);
+    }
+
+    .tip strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #ffe8b0;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .feature-item {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .feature-item strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .trouble-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .trouble-card {
+      padding: 18px;
+    }
+
+    .trouble-card h3 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--primary-2);
+      flex: 0 0 auto;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      border: 0;
+      color: var(--text);
+      background: transparent;
+      padding: 18px;
+      text-align: left;
+      font-weight: 850;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 18px 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .glossary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .glossary div {
+      padding: 15px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+    }
+
+    .glossary strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .glossary span {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .footer {
+      color: var(--muted);
+      text-align: center;
+      padding: 34px 0 12px;
+    }
+
+    .mobile-topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 12px;
+      background: rgba(10, 11, 22, 0.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mobile-topbar button {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px;
+      color: var(--text);
+      background: var(--panel-strong);
+      font-weight: 800;
+    }
+
+    mark {
+      background: rgba(245, 158, 11, 0.35);
+      color: var(--text);
+      border-radius: 5px;
+      padding: 0 2px;
+    }
+
+    @media (max-width: 1080px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .mobile-topbar {
+        display: block;
+      }
+
+      .sidebar {
+        display: none;
+        position: fixed;
+        z-index: 50;
+        width: min(92vw, 360px);
+        left: 12px;
+        top: 66px;
+        height: calc(100vh - 82px);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+      }
+
+      .sidebar.open {
+        display: block;
+      }
+
+      .content {
+        padding: 18px;
+      }
+
+      .quick-grid,
+      .feature-list,
+      .glossary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .quick-grid,
+      .feature-list,
+      .two-col,
+      .trouble-grid,
+      .glossary {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      h1 {
+        letter-spacing: -1.8px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #111;
+      }
+
+      .sidebar,
+      .mobile-topbar,
+      .hero-actions,
+      .search-box {
+        display: none !important;
+      }
+
+      .app-shell {
+        display: block;
+      }
+
+      .content {
+        padding: 0;
+        max-width: 100%;
+      }
+
+      .hero,
+      .section,
+      .quick-card,
+      .trouble-card,
+      .faq-item,
+      .glossary div,
+      .feature-item,
+      .step,
+      .tip {
+        box-shadow: none;
+        background: #fff;
+        color: #111;
+        border-color: #ddd;
+      }
+
+      p, li, .muted, .glossary span, .feature-item, .faq-answer {
+        color: #333;
+      }
+
+      .section {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mobile-topbar">
+    <button id="menuBtn">☰ Buka Menu Panduan</button>
+  </div>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="logo">RV</div>
+        <div>
+          <strong>RVTik Stream Pro</strong>
+          <span>Panduan pengguna santai</span>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <input id="searchInput" type="search" placeholder="Cari: OBS, gift, musik, overlay..." />
+      </div>
+
+      <div class="nav-title">Menu Panduan</div>
+      <nav class="nav-list" id="navList">
+        <a class="nav-link" href="#mulai"><span>Mulai Cepat</span><small>01</small></a>
+        <a class="nav-link" href="#pengenalan"><span>Pengenalan</span><small>02</small></a>
+        <a class="nav-link" href="#instalasi"><span>Instalasi</span><small>03</small></a>
+        <a class="nav-link" href="#login"><span>Login & Aktivasi</span><small>04</small></a>
+        <a class="nav-link" href="#koneksi"><span>Koneksi TikTok</span><small>05</small></a>
+        <a class="nav-link" href="#dashboard"><span>Dashboard, Dock, Overlay</span><small>06</small></a>
+        <a class="nav-link" href="#event"><span>Event & Trigger</span><small>07</small></a>
+        <a class="nav-link" href="#hotkey"><span>Hotkey</span><small>08</small></a>
+        <a class="nav-link" href="#game-trigger"><span>Game Trigger</span><small>09</small></a>
+        <a class="nav-link" href="#obs"><span>OBS Automation</span><small>10</small></a>
+        <a class="nav-link" href="#ttls"><span>TTLS Automation</span><small>11</small></a>
+        <a class="nav-link" href="#music"><span>Music Request</span><small>12</small></a>
+        <a class="nav-link" href="#pengaturan"><span>Pengaturan</span><small>13</small></a>
+        <a class="nav-link" href="#troubleshooting"><span>Troubleshooting</span><small>14</small></a>
+        <a class="nav-link" href="#faq"><span>FAQ</span><small>15</small></a>
+        <a class="nav-link" href="#glosarium"><span>Glosarium</span><small>16</small></a>
+        <a class="nav-link" href="#support"><span>Kontak Support</span><small>17</small></a>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <section class="hero" id="top">
+        <div class="badge">✨ Manual Pengguna Lengkap</div>
+        <h1>RVTik Stream Pro — Panduan buat live kamu jadi lebih interaktif.</h1>
+        <p>
+          Halaman ini bantu kamu install, connect TikTok Live, pasang overlay, pakai Dock, bikin trigger,
+          sampai setup OBS, TikTok Live Studio, Hotkey, Game Trigger, dan Music Request. Bahasanya dibuat santai supaya kamu bisa langsung praktik.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#mulai">Mulai dari 10 langkah</a>
+          <a class="btn" href="#troubleshooting">Cek Troubleshooting</a>
+          <button class="btn" onclick="window.print()">Print / Save PDF</button>
+        </div>
+      </section>
+
+      <section class="quick-grid" aria-label="Ringkasan fitur">
+        <article class="quick-card">
+          <span>1</span>
+          <h3>Connect TikTok</h3>
+          <p>Masukkan username TikTok, start engine, lalu cek event masuk ke Dock.</p>
+        </article>
+        <article class="quick-card">
+          <span>2</span>
+          <h3>Pasang Overlay</h3>
+          <p>Copy URL overlay dari dashboard, lalu tempel ke OBS Browser Source.</p>
+        </article>
+        <article class="quick-card">
+          <span>3</span>
+          <h3>Buat Trigger</h3>
+          <p>Atur rule dari gift, like, follow, share, atau chat sesuai kebutuhan live.</p>
+        </article>
+        <article class="quick-card">
+          <span>4</span>
+          <h3>Test Dulu</h3>
+          <p>Gunakan Dock atau event test sebelum live ramai supaya semua aman.</p>
+        </article>
+      </section>
+
+      <section class="section" id="mulai" data-section>
+        <div class="section-kicker">Mulai Cepat</div>
+        <h2>Dari install sampai live dalam 10 langkah</h2>
+        <div class="steps">
+          <div class="step"><div><strong>Install RVTik</strong><p>Download dari sumber resmi, ekstrak jika perlu, lalu buka aplikasi.</p></div></div>
+          <div class="step"><div><strong>Login atau aktivasi</strong><p>Masukkan data lisensi kamu, lalu tunggu proses verifikasi selesai.</p></div></div>
+          <div class="step"><div><strong>Masukkan username TikTok</strong><p>Pastikan akun yang dimasukkan sedang live atau akan dipakai live.</p></div></div>
+          <div class="step"><div><strong>Klik Start Engine</strong><p>Tunggu sampai status berubah menjadi connected.</p></div></div>
+          <div class="step"><div><strong>Buka Dock</strong><p>Cek apakah chat, gift, follow, atau event lain mulai masuk.</p></div></div>
+          <div class="step"><div><strong>Copy URL Overlay</strong><p>Ambil link overlay dari dashboard RVTik.</p></div></div>
+          <div class="step"><div><strong>Pasang ke OBS</strong><p>Tambahkan Browser Source, tempel URL overlay, lalu atur ukuran.</p></div></div>
+          <div class="step"><div><strong>Buat rule trigger</strong><p>Pilih event seperti gift, like, follow, share, atau chat.</p></div></div>
+          <div class="step"><div><strong>Test semua fitur</strong><p>Coba overlay, OBS, Hotkey, TTLS, dan Music Request sebelum live ramai.</p></div></div>
+          <div class="step"><div><strong>Mulai live dengan tenang</strong><p>Kalau event sudah masuk dan trigger jalan, setup dasar kamu sudah siap.</p></div></div>
+        </div>
+        <div class="tip"><strong>Tips:</strong> Jangan langsung aktifkan semua fitur sekaligus. Mulai dari connector, Dock, dan overlay dulu. Setelah aman, baru lanjut ke OBS, Hotkey, Game Trigger, TTLS, atau Music.</div>
+      </section>
+
+      <section class="section" id="pengenalan" data-section>
+        <div class="section-kicker">Pengenalan</div>
+        <h2>Apa itu RVTik Stream?</h2>
+        <p>RVTik Stream adalah aplikasi desktop untuk membantu streamer TikTok Live mengubah event live menjadi aksi otomatis. Jadi saat ada penonton chat, kirim gift, like, follow, atau share, RVTik bisa meneruskan event itu ke overlay, Dock, Hotkey, Game Trigger, OBS, TikTok Live Studio, dan Music Request.</p>
+        <div class="feature-list">
+          <div class="feature-item"><strong>Overlay</strong>Menampilkan alert atau visual ke siaran.</div>
+          <div class="feature-item"><strong>Dock</strong>Memantau event real-time dan test trigger manual.</div>
+          <div class="feature-item"><strong>Hotkey</strong>Menekan shortcut otomatis saat event masuk.</div>
+          <div class="feature-item"><strong>Game Trigger</strong>Mengirim input keyboard langsung ke game, emulator, atau window aktif.</div>
+          <div class="feature-item"><strong>OBS</strong>Mengontrol scene, source, atau filter dari event live.</div>
+          <div class="feature-item"><strong>TTLS</strong>Membantu automation di TikTok Live Studio.</div>
+          <div class="feature-item"><strong>Music</strong>Penonton bisa request lagu dari chat sesuai aturan kamu.</div>
+        </div>
+      </section>
+
+      <section class="section" id="instalasi" data-section>
+        <div class="section-kicker">Instalasi</div>
+        <h2>Cara install dan membuka aplikasi</h2>
+        <div class="two-col">
+          <div>
+            <h3>Cara install</h3>
+            <ol>
+              <li>Download RVTik Stream dari sumber resmi.</li>
+              <li>Kalau file masih berbentuk ZIP, ekstrak dulu.</li>
+              <li>Masuk ke folder hasil ekstrak.</li>
+              <li>Jalankan file utama aplikasi, biasanya <strong>RVTik.exe</strong>.</li>
+            </ol>
+          </div>
+          <div>
+            <h3>Kalau Windows memberi warning</h3>
+            <ol>
+              <li>Klik <strong>More Info</strong>.</li>
+              <li>Klik <strong>Run Anyway</strong>.</li>
+              <li>Lakukan ini hanya kalau file kamu dapat dari sumber resmi.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="tip"><strong>Catatan kecil:</strong> Simpan aplikasi di folder biasa yang mudah ditemukan. Jangan dijalankan langsung dari dalam ZIP.</div>
+      </section>
+
+      <section class="section" id="login" data-section>
+        <div class="section-kicker">Login & Aktivasi</div>
+        <h2>Masuk ke RVTik dan pahami session</h2>
+        <p>Setelah aplikasi terbuka, RVTik biasanya akan membaca data login yang tersimpan. Kalau lisensi masih valid, kamu bisa langsung masuk dashboard. Kalau belum, kamu akan diminta login atau aktivasi.</p>
+        <div class="steps">
+          <div class="step"><div><strong>Buka aplikasi</strong><p>Tunggu sampai halaman aktivasi atau dashboard muncul.</p></div></div>
+          <div class="step"><div><strong>Isi data lisensi</strong><p>Masukkan email, username, token, atau data aktivasi sesuai yang kamu punya.</p></div></div>
+          <div class="step"><div><strong>Klik login / aktivasi</strong><p>Tunggu sampai proses verifikasi selesai.</p></div></div>
+          <div class="step"><div><strong>Masuk dashboard</strong><p>Kalau berhasil, kamu bisa mulai connect TikTok Live.</p></div></div>
+        </div>
+        <h3>Apa itu session?</h3>
+        <p>Session adalah ID unik yang dipakai RVTik untuk menghubungkan dashboard, overlay, Dock, dan fitur lain. Gampangnya, session itu seperti tanda pengenal live kamu di dalam sistem RVTik.</p>
+      </section>
+
+      <section class="section" id="koneksi" data-section>
+        <div class="section-kicker">Koneksi TikTok Live</div>
+        <h2>Hubungkan RVTik ke live kamu</h2>
+        <div class="steps">
+          <div class="step"><div><strong>Buka dashboard</strong><p>Pastikan kamu sudah login.</p></div></div>
+          <div class="step"><div><strong>Masukkan username TikTok</strong><p>Isi username tanpa typo. Pastikan akun sedang live jika ingin event langsung masuk.</p></div></div>
+          <div class="step"><div><strong>Klik Start Engine</strong><p>RVTik akan mencoba mengambil event dari TikTok Live.</p></div></div>
+          <div class="step"><div><strong>Cek status</strong><p>Kalau connected, coba minta teman kirim chat test.</p></div></div>
+        </div>
+        <div class="pill-row">
+          <span class="pill">Connecting = sedang mencoba</span>
+          <span class="pill">Connected = berhasil</span>
+          <span class="pill">Offline = akun belum live / putus</span>
+          <span class="pill">Engine Error = connector bermasalah</span>
+        </div>
+      </section>
+
+      <section class="section" id="dashboard" data-section>
+        <div class="section-kicker">Dashboard, Dock, Overlay</div>
+        <h2>Bedanya apa?</h2>
+        <div class="feature-list">
+          <div class="feature-item"><strong>Dashboard</strong>Pusat kontrol utama untuk login, connect TikTok, buka panel, dan copy overlay.</div>
+          <div class="feature-item"><strong>Dock</strong>Panel pemantau event real-time. Cocok untuk melihat chat/gift dan test trigger.</div>
+          <div class="feature-item"><strong>Overlay</strong>Tampilan visual yang muncul di live, biasanya dipasang ke OBS Browser Source.</div>
+        </div>
+        <h3>Cara pasang overlay ke OBS</h3>
+        <ol>
+          <li>Buka dashboard RVTik.</li>
+          <li>Klik tombol <strong>Copy URL</strong> overlay.</li>
+          <li>Buka OBS, masuk ke panel <strong>Sources</strong>.</li>
+          <li>Klik tombol <strong>+</strong>, pilih <strong>Browser</strong>.</li>
+          <li>Tempel URL overlay.</li>
+          <li>Atur ukuran, misalnya 1920 x 1080.</li>
+        </ol>
+        <div class="tip"><strong>Tips:</strong> Kalau overlay tidak muncul, coba refresh Browser Source, copy ulang URL, dan pastikan session masih sama.</div>
+      </section>
+
+      <section class="section" id="event" data-section>
+        <div class="section-kicker">Event & Trigger</div>
+        <h2>Konsep utama yang wajib kamu paham</h2>
+        <div class="two-col">
+          <div>
+            <h3>Event</h3>
+            <p>Event adalah kejadian dari TikTok Live, misalnya chat, gift, like, follow, share, member/join, atau viewer.</p>
+          </div>
+          <div>
+            <h3>Rule / Trigger</h3>
+            <p>Rule adalah aturan otomatis. Trigger adalah pemicunya. Contoh: kalau gift Rose masuk, tampilkan source di OBS selama 3 detik.</p>
+          </div>
+        </div>
+        <h3>Aturan durasi</h3>
+        <div class="pill-row">
+          <span class="pill">Durasi kosong = 3 detik</span>
+          <span class="pill">Durasi 0 = 3 detik</span>
+          <span class="pill">Durasi > 0 = sesuai input</span>
+        </div>
+        <h3>Cara kerja antrean</h3>
+        <p>Supaya trigger tidak saling tabrak, rule berbeda akan antre. Kalau rule yang sama menumpuk, durasinya bisa ditambah jika fitur tersebut sudah mendukung.</p>
+      </section>
+
+      <section class="section" id="hotkey" data-section>
+        <div class="section-kicker">Hotkey Automation</div>
+        <h2>Jalankan shortcut otomatis dari event live</h2>
+        <p>Hotkey Automation cocok untuk menekan shortcut di TikTok Live Studio atau aplikasi lain. Misalnya gift tertentu memicu shortcut untuk menyalakan efek, lalu setelah durasi selesai shortcut ditekan lagi untuk mematikan efek.</p>
+        <ol>
+          <li>Buka panel <strong>Hotkey Control</strong>.</li>
+          <li>Aktifkan <strong>Status Trigger</strong>.</li>
+          <li>Pilih event, misalnya gift atau follow.</li>
+          <li>Isi nama interaksi dan kondisi.</li>
+          <li>Klik kolom shortcut, lalu tekan kombinasi tombol.</li>
+          <li>Isi durasi, lalu simpan aturan.</li>
+        </ol>
+        <div class="tip"><strong>Kalau hotkey tidak jalan:</strong> coba test shortcut manual, buka aplikasi target, cek rule, dan jalankan RVTik sebagai admin kalau aplikasi target juga berjalan sebagai admin.</div>
+
+        <h3>Penggunaan Hotkey untuk TikTok Live Studio</h3>
+        <p>
+          Hotkey juga bisa kamu pakai untuk mengontrol fitur di TikTok Live Studio, misalnya memunculkan efek, filter,
+          source tertentu, atau aksi lain yang memang bisa dipanggil lewat shortcut di TTLS.
+        </p>
+        <div class="tip">
+          <strong>Penting:</strong>
+          Untuk TikTok Live Studio, sebaiknya shortcut disiapkan dulu dari <strong>RVTik</strong>, baru setelah itu disamakan di <strong>TTLS</strong>.
+          Ini karena TTLS kadang bisa memblokir atau tidak menangkap hotkey global kalau urutannya kurang pas.
+        </div>
+        <div class="tip">
+          <strong>Yang wajib sama:</strong>
+          Shortcut di RVTik dan shortcut di TikTok Live Studio harus <strong>sama persis</strong>.
+          Kalau shortcut berbeda, RVTik tetap menekan tombolnya, tapi TTLS tidak akan menjalankan efek atau filter yang kamu mau.
+        </div>
+        <div class="steps">
+          <div class="step"><div><strong>Buat rule Hotkey dulu di RVTik</strong><p>Buka panel Hotkey RVTik, pilih event pemicu, lalu isi shortcut yang ingin dipakai. Contoh: <strong>Ctrl + 1</strong> untuk efek A.</p></div></div>
+          <div class="step"><div><strong>Simpan rule di RVTik</strong><p>Isi durasi, nama interaksi, dan kondisi event. Setelah itu klik simpan supaya RVTik siap menekan shortcut tersebut.</p></div></div>
+          <div class="step"><div><strong>Baru buka TikTok Live Studio</strong><p>Masuk ke bagian shortcut/hotkey TTLS, lalu hubungkan efek atau filter ke shortcut yang sama dengan RVTik.</p></div></div>
+          <div class="step"><div><strong>Samakan shortcut di TTLS</strong><p>Kalau di RVTik memakai <strong>Ctrl + 1</strong>, maka di TTLS juga harus <strong>Ctrl + 1</strong>. Jangan beda tombol, huruf, angka, atau kombinasi.</p></div></div>
+          <div class="step"><div><strong>Test dari RVTik, bukan hanya manual</strong><p>Gunakan Dock atau event test. Kalau rule match, RVTik akan menekan shortcut dan TTLS akan menjalankan efek/filter tersebut.</p></div></div>
+        </div>
+        <h3>Contoh setup efek/filter di TTLS</h3>
+        <ol>
+          <li>Di RVTik, buat rule Hotkey dari event <strong>Gift Rose</strong>.</li>
+          <li>Isi shortcut RVTik dengan <strong>Ctrl + 1</strong>.</li>
+          <li>Isi durasi, misalnya <strong>5 detik</strong>.</li>
+          <li>Simpan rule Hotkey di RVTik.</li>
+          <li>Baru buka TikTok Live Studio.</li>
+          <li>Di TTLS, setting efek atau filter agar aktif lewat shortcut <strong>Ctrl + 1</strong>.</li>
+          <li>Test dari Dock atau event test RVTik.</li>
+        </ol>
+        <p>
+          Hasilnya: saat Gift Rose masuk, RVTik akan menekan <strong>Ctrl + 1</strong>, lalu TTLS akan memunculkan efek/filter
+          yang sebelumnya sudah kamu hubungkan ke shortcut tersebut.
+        </p>
+        <div class="tip">
+          <strong>Tips:</strong>
+          Pakai shortcut yang simpel dan jarang bentrok, misalnya <strong>Ctrl + angka</strong> atau <strong>Alt + angka</strong>.
+          Hindari shortcut yang sudah dipakai Windows, browser, OBS, atau aplikasi lain.
+        </div>
+      </section>
+
+      <section class="section" id="game-trigger" data-section>
+        <div class="section-kicker">Game Trigger</div>
+        <h2>Cara memakai Game Trigger untuk kontrol game</h2>
+        <p>
+          Game Trigger adalah fitur baru RVTik untuk mengirim input keyboard langsung ke <strong>game, emulator, atau window aktif</strong>
+          dari event TikTok Live. Fitur ini cocok kalau kamu ingin penonton ikut mengendalikan gameplay, misalnya gift Rose menahan
+          tombol <strong>W</strong>, chat <strong>!jump</strong> menekan <strong>Space</strong>, atau like tiap 10 memicu aksi tertentu.
+        </p>
+
+        <div class="tip">
+          <strong>Penting:</strong>
+          Game Trigger berbeda dengan Hotkey biasa. Hotkey dipakai untuk shortcut aplikasi seperti OBS atau TikTok Live Studio.
+          Game Trigger dipakai untuk input gameplay yang masuk ke game atau emulator yang sedang fokus.
+        </div>
+
+        <div class="feature-list">
+          <div class="feature-item"><strong>Press Once</strong>Menekan tombol sekali, misalnya chat <strong>!jump</strong> → <strong>Space</strong>.</div>
+          <div class="feature-item"><strong>Hold</strong>Menahan tombol beberapa detik, misalnya gift Rose → tahan <strong>W</strong>.</div>
+          <div class="feature-item"><strong>Repeat</strong>Mengetuk tombol berulang, misalnya gift GG → tekan <strong>J</strong> 5x.</div>
+          <div class="feature-item"><strong>Combo</strong>Menekan beberapa tombol bersamaan, misalnya <strong>Ctrl + Shift + 1</strong>.</div>
+          <div class="feature-item"><strong>Sequence</strong>Menekan tombol berurutan, misalnya <strong>W → A → S → D</strong>.</div>
+          <div class="feature-item"><strong>STOP ALL</strong>Melepas semua tombol aktif jika ada tombol terasa nyangkut.</div>
+        </div>
+
+        <h3>Jenis Action Mode dan fungsinya</h3>
+        <p>
+          Saat membuat rule Game Trigger, bagian <strong>Action Mode</strong> menentukan bagaimana tombol dikirim ke game.
+          Di bawah ini penjelasan paling gampang supaya kamu tidak salah pilih mode.
+        </p>
+        <div class="steps">
+          <div class="step"><div><strong>Press Once</strong><p>Ini untuk tekan sekali lalu lepas. Cocok untuk aksi cepat seperti <strong>jump</strong>, <strong>interact</strong>, <strong>reload</strong>, atau <strong>confirm</strong>. Di panel, mode ini biasanya tertulis <strong>Press</strong>.</p></div></div>
+          <div class="step"><div><strong>Hold</strong><p>Ini untuk tahan tombol beberapa milidetik atau beberapa detik. Cocok untuk <strong>maju</strong>, <strong>mundur</strong>, <strong>gas</strong>, atau aksi yang butuh tombol tetap aktif sementara.</p></div></div>
+          <div class="step"><div><strong>Repeat / Multi Tap</strong><p>Ini untuk menekan tombol berkali-kali secara otomatis. Cocok untuk spam serangan ringan, spam interact, atau aksi yang memang butuh ketukan berulang.</p></div></div>
+          <div class="step"><div><strong>Combo</strong><p>Ini untuk menekan beberapa tombol bersamaan seperti <strong>Ctrl + 1</strong>, <strong>Shift + Space</strong>, atau shortcut skill tertentu di game.</p></div></div>
+          <div class="step"><div><strong>Sequence</strong><p>Ini untuk menekan beberapa tombol secara berurutan, misalnya <strong>W lalu Space lalu J</strong>. Cocok untuk pola aksi kecil yang harus berjalan satu per satu.</p></div></div>
+          <div class="step"><div><strong>STOP ALL</strong><p>Ini bukan Action Mode untuk rule, tapi tombol darurat untuk melepas semua tombol yang sedang aktif. Pakai kalau ada hold yang terasa nyangkut atau gameplay jadi tidak terkendali.</p></div></div>
+        </div>
+
+        <div class="tip">
+          <strong>Catatan penting:</strong>
+          <strong>Hotkey</strong> dan <strong>Game Trigger</strong> itu fitur yang berbeda. Hotkey dipakai untuk shortcut aplikasi seperti
+          <strong>OBS</strong>, <strong>TikTok Live Studio</strong>, atau panel lain. Game Trigger dipakai untuk kirim input keyboard ke
+          <strong>game / emulator / window aktif</strong>. Jadi <strong>Hot Keys</strong> bukan Action Mode di Game Trigger.
+        </div>
+
+        <h3>Cara membuka panel Game Trigger</h3>
+        <ol>
+          <li>Buka <strong>Dashboard RVTik</strong>.</li>
+          <li>Masuk ke <strong>Control Center</strong>.</li>
+          <li>Cari kartu <strong>Game Trigger</strong>.</li>
+          <li>Klik <strong>Buka Panel</strong>.</li>
+        </ol>
+
+        <h3>Setup dasar sebelum bikin rule</h3>
+        <div class="steps">
+          <div class="step"><div><strong>Aktifkan Game Trigger</strong><p>Nyalakan toggle <strong>Enable Game Trigger</strong> di bagian Global Control.</p></div></div>
+          <div class="step"><div><strong>Pilih backend keyboard</strong><p>Mulai dari <strong>Auto</strong>. Kalau ada masalah, baru coba backend lain seperti nut-js, robotjs, atau PowerShell.</p></div></div>
+          <div class="step"><div><strong>Atur safety</strong><p>Isi <strong>Global Cooldown</strong>, <strong>Max Queue Size</strong>, dan <strong>Max Hold Duration</strong> agar trigger tidak terlalu ramai.</p></div></div>
+          <div class="step"><div><strong>Simpan pengaturan</strong><p>Klik <strong>Save Settings</strong> sebelum lanjut bikin banyak rule.</p></div></div>
+        </div>
+
+        <h3>Cara membuat rule Game Trigger</h3>
+        <ol>
+          <li>Klik <strong>Tambah Rule</strong>.</li>
+          <li>Pilih <strong>Event Type</strong>: gift, chat, like, follow, share, atau join/member.</li>
+          <li>Kalau event = <strong>Gift</strong>, pilih gift dari dropdown searchable supaya nama dan coin konsisten.</li>
+          <li>Cek <strong>Min Coin</strong>. Biasanya otomatis terisi dari gift yang dipilih, tapi tetap bisa kamu ubah manual.</li>
+          <li>Pilih <strong>Action Mode</strong>: <strong>Press Once</strong> (press), <strong>Hold</strong>, <strong>Repeat</strong>, <strong>Combo</strong>, atau <strong>Sequence</strong>.</li>
+          <li>Isi key, durasi, repeat count, atau sequence sesuai kebutuhan game kamu.</li>
+          <li>Isi <strong>Cooldown</strong> supaya tidak spam.</li>
+          <li>Klik <strong>Save Rule</strong>.</li>
+        </ol>
+
+        <h3>Contoh rule yang umum dipakai</h3>
+        <div class="pill-row">
+          <span class="pill">Gift Rose → Hold W 1000ms</span>
+          <span class="pill">Chat !jump → Space 100ms</span>
+          <span class="pill">Gift GG → Repeat J 5x</span>
+          <span class="pill">Follow → Press Once F</span>
+          <span class="pill">Share → Press G</span>
+        </div>
+
+        <h3>Akumulasi combo untuk hold</h3>
+        <p>
+          Fitur paling menarik di Game Trigger adalah <strong>Akumulasi Combo</strong>.
+          Contohnya, kalau rule kamu adalah <strong>Rose → Hold W 1000ms</strong>, lalu saat tombol masih aktif masuk combo 5 Rose,
+          maka durasi tahan <strong>W</strong> akan ditambah 5 detik, bukan menekan tombol ulang dari awal.
+        </p>
+        <div class="tip">
+          <strong>Contoh gampang:</strong>
+          1 Rose = tahan W 1 detik. Kalau saat masih aktif masuk Rose combo 5, total durasi akan bertambah 5 detik lagi.
+          Supaya aman, tetap pakai <strong>Max Hold Duration</strong>.
+        </div>
+
+        <h3>Test rule sebelum live</h3>
+        <ol>
+          <li>Klik tombol <strong>Test</strong> di rule atau <strong>Test This Rule</strong> di editor.</li>
+          <li>Untuk gift rule, isi <strong>Test Combo Count</strong> kalau ingin mencoba efek combo.</li>
+          <li>Lihat apakah game menerima input keyboard dengan benar.</li>
+          <li>Kalau tombol terasa nyangkut, klik <strong>STOP ALL KEYBOARD TRIGGERS</strong>.</li>
+        </ol>
+
+        <h3>Tips aman saat memakai Game Trigger</h3>
+        <ul>
+          <li>Pastikan window game sedang aktif sebelum test atau live.</li>
+          <li>Test rule satu per satu dulu, jangan semua sekaligus.</li>
+          <li>Gunakan cooldown dan max hold supaya live tetap nyaman dikendalikan.</li>
+          <li>Hindari tombol berisiko seperti <strong>Alt + F4</strong>, <strong>Ctrl + W</strong>, <strong>Ctrl + Q</strong>, <strong>Win</strong>, atau <strong>Delete</strong>.</li>
+          <li>Beberapa game dengan anti-cheat bisa membatasi input otomatis. Kalau tidak jalan, coba test di Notepad atau emulator lebih dulu.</li>
+        </ul>
+
+        <div class="tip">
+          <strong>Checklist cepat sebelum live:</strong>
+          Game Trigger aktif, rule sudah disimpan, game sedang fokus, test trigger berhasil, dan kamu tahu posisi tombol <strong>STOP ALL</strong>.
+        </div>
+      </section>
+
+      <section class="section" id="obs" data-section>
+        <div class="section-kicker">OBS Automation</div>
+        <h2>Kontrol OBS dari gift, like, follow, atau share</h2>
+        <p>OBS Automation bisa dipakai untuk ganti scene, menampilkan source, atau toggle filter source. Ini cocok banget untuk bikin live terasa lebih interaktif.</p>
+        <h3>Syarat sebelum dipakai</h3>
+        <ul>
+          <li>OBS harus terbuka.</li>
+          <li>OBS WebSocket harus aktif.</li>
+          <li>RVTik harus berhasil connect ke OBS.</li>
+        </ul>
+        <h3>Cara connect OBS</h3>
+        <ol>
+          <li>Buka OBS.</li>
+          <li>Masuk ke <strong>Tools → WebSocket Server Settings</strong>.</li>
+          <li>Aktifkan WebSocket.</li>
+          <li>Catat port, biasanya 4455.</li>
+          <li>Isi IP 127.0.0.1, port, dan password di RVTik.</li>
+          <li>Klik <strong>Test Koneksi</strong>.</li>
+        </ol>
+        <div class="tip"><strong>Yang sering bikin error:</strong> nama scene/source harus sama persis. Kalau beda huruf atau spasi, action bisa tidak jalan.</div>
+      </section>
+
+      <section class="section" id="ttls" data-section>
+        <div class="section-kicker">TikTok Live Studio Automation</div>
+        <h2>Automation khusus TikTok Live Studio</h2>
+        <p>Panel TTLS bisa dipakai untuk mengontrol scene, source, audio, mic, pause/continue live, recording, atau highlight jika tersedia di versi aplikasi kamu.</p>
+        <ol>
+          <li>Buka TikTok Live Studio.</li>
+          <li>Buka panel <strong>TikTok LIVE Studio Control</strong> di RVTik.</li>
+          <li>Klik <strong>Test Connection</strong>.</li>
+          <li>Refresh daftar scene/source jika belum muncul.</li>
+          <li>Buat rule, pilih aksi, isi durasi, lalu apply config.</li>
+        </ol>
+        <div class="tip"><strong>Catatan kecil:</strong> Kalau kamu masih baru, mulai dari rule paling sederhana dulu seperti show/hide source.</div>
+      </section>
+
+      <section class="section" id="music" data-section>
+        <div class="section-kicker">Music Request</div>
+        <h2>Dashboard Music sekarang jadi pusat pemutar lagu</h2>
+        <p>
+          Music Request memungkinkan penonton mengetik command seperti <strong>!play judul lagu</strong> atau <strong>!req judul lagu</strong>.
+          Kalau request lolos aturan, lagu akan masuk queue dan diputar dari <strong>Dashboard Music</strong>, bukan lagi dari overlay.
+        </p>
+        <div class="tip">
+          <strong>Penting:</strong>
+          Saat memakai fitur Music, biarkan <strong>Dashboard Music</strong> tetap terbuka. Halaman ini sekarang menjadi audio runtime utama.
+          Kalau Dashboard Music ditutup atau di-reload, audio bisa berhenti sebentar sampai runtime aktif lagi.
+        </div>
+        <div class="feature-list">
+          <div class="feature-item"><strong>Dashboard Music</strong>Pusat kontrol lagu: play/pause, skip, stop, clear queue, playlist, blacklist, dan volume.</div>
+          <div class="feature-item"><strong>Audio Runtime</strong>Pemutar audio utama sekarang berjalan dari Dashboard Music, bukan dari overlay OBS.</div>
+          <div class="feature-item"><strong>Overlay Music</strong>Overlay hanya menampilkan visual lagu, requester, avatar, dan animasi. Overlay tidak mengeluarkan suara.</div>
+          <div class="feature-item"><strong>Queue lagu</strong>Daftar lagu yang menunggu diputar.</div>
+          <div class="feature-item"><strong>Volume</strong>Atur keras kecil suara langsung dari slider Volume di Dashboard Music.</div>
+          <div class="feature-item"><strong>Single Runtime</strong>Kalau Dashboard Music terbuka lebih dari satu, hanya satu yang memutar audio. Yang lain tetap bisa jadi controller.</div>
+          <div class="feature-item"><strong>Playlist</strong>Kumpulan lagu yang bisa kamu simpan per kategori.</div>
+          <div class="feature-item"><strong>Blacklist</strong>Blok lagu, keyword, atau URL tertentu.</div>
+          <div class="feature-item"><strong>Max Queue</strong>Batas jumlah antrean lagu.</div>
+          <div class="feature-item"><strong>Max/User</strong>Batas request per user.</div>
+          <div class="feature-item"><strong>Max Menit</strong>Batas durasi lagu agar tidak terlalu panjang.</div>
+          <div class="feature-item"><strong>Auto Next</strong>Kalau lagu selesai, Dashboard Music otomatis lanjut ke lagu berikutnya di queue.</div>
+        </div>
+
+        <h3>Cara membuka dan memakai Dashboard Music</h3>
+        <div class="steps">
+          <div class="step"><div><strong>Buka Dashboard RVTik</strong><p>Pastikan engine sudah aktif dan session yang dipakai masih sama dengan overlay.</p></div></div>
+          <div class="step"><div><strong>Buka panel Dashboard Music</strong><p>Gunakan tombol Music atau Music Control dari dashboard. Jangan tutup panel ini selama fitur musik dipakai.</p></div></div>
+          <div class="step"><div><strong>Atur volume</strong><p>Gunakan slider <strong>Volume</strong> di Dashboard Music. Nilai volume akan ikut tersimpan dan dikirim ke runtime pemutar.</p></div></div>
+          <div class="step"><div><strong>Test lagu dulu</strong><p>Coba request manual atau gunakan command chat. Pastikan suara keluar dari aplikasi/Dashboard Music, bukan dari overlay OBS.</p></div></div>
+          <div class="step"><div><strong>Pasang overlay music ke OBS</strong><p>Overlay tetap dipakai untuk tampilan visual. Karena overlay sudah viewer-only, jangan berharap suara keluar dari Browser Source overlay.</p></div></div>
+        </div>
+
+        <h3>Alur kerja Music Player terbaru</h3>
+        <div class="pill-row">
+          <span class="pill">Dashboard Music = pemutar audio</span>
+          <span class="pill">Overlay = visual saja</span>
+          <span class="pill">MusicService = queue & state</span>
+          <span class="pill">Dock/Dashboard = controller</span>
+        </div>
+        <p>
+          Dengan alur ini, reload overlay di OBS tidak langsung mematikan audio. Audio tetap dijalankan oleh Dashboard Music selama panel tersebut masih aktif.
+          Overlay cukup mengikuti data lagu yang sedang berjalan untuk menampilkan judul, thumbnail, requester, avatar, queue, atau animasi sesuai tema.
+        </p>
+
+        <h3>Kalau membuka Dashboard Music lebih dari satu</h3>
+        <p>
+          RVTik memakai sistem <strong>single runtime</strong>. Artinya, kalau kamu membuka lebih dari satu Dashboard Music, hanya satu jendela yang menjadi pemutar audio aktif.
+          Jendela lain tetap bisa dipakai untuk klik tombol, mengatur queue, dan mengubah volume, tapi tidak akan ikut membunyikan lagu.
+        </p>
+        <div class="tip">
+          <strong>Tips aman:</strong>
+          Saat live, sebaiknya cukup buka satu Dashboard Music utama. Kalau perlu membuka yang kedua, pastikan tidak ada suara dobel.
+        </div>
+
+        <h3>Command yang umum dipakai</h3>
+        <div class="pill-row">
+          <span class="pill">!play judul lagu</span>
+          <span class="pill">!req judul lagu</span>
+          <span class="pill">!skip</span>
+          <span class="pill">!remove</span>
+          <span class="pill">!cancel</span>
+        </div>
+
+        <h3>Checklist sebelum live pakai Music Request</h3>
+        <ol>
+          <li>Pastikan Dashboard Music terbuka.</li>
+          <li>Pastikan slider Volume tidak di angka 0%.</li>
+          <li>Test satu lagu sebelum live ramai.</li>
+          <li>Pastikan overlay music muncul di OBS, tapi tidak mengeluarkan suara dobel.</li>
+          <li>Test skip dan tunggu lagu selesai untuk memastikan auto-next berjalan.</li>
+        </ol>
+      </section>
+
+      <section class="section" id="pengaturan" data-section>
+        <div class="section-kicker">Pengaturan</div>
+        <h2>Config dan data aplikasi</h2>
+        <p>RVTik menyimpan banyak pengaturan secara otomatis, seperti session, data login, config OBS, TTLS, Hotkey, Music, playlist, dan queue tertentu.</p>
+        <div class="tip"><strong>Jangan hapus sembarangan:</strong> file config, session, lisensi, atau folder data aplikasi. Kalau dihapus, setting bisa hilang dan kamu perlu setup ulang.</div>
+        <h3>Kalau setting hilang</h3>
+        <ol>
+          <li>Pastikan kamu sudah klik simpan atau apply config.</li>
+          <li>Tutup lalu buka lagi panelnya.</li>
+          <li>Jalankan aplikasi dari folder biasa, bukan dari ZIP.</li>
+          <li>Coba Run as administrator jika perlu.</li>
+        </ol>
+      </section>
+
+      <section class="section" id="troubleshooting" data-section>
+        <div class="section-kicker">Troubleshooting</div>
+        <h2>Kalau ada yang tidak jalan, cek dari sini dulu</h2>
+        <div class="trouble-grid">
+          <article class="trouble-card"><h3><span class="dot"></span>App tidak terbuka</h3><p>Biasanya karena file belum diekstrak, diblok Windows, atau proses lama masih nyangkut. Coba tutup dari Task Manager, ekstrak ulang, lalu Run as administrator.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Login gagal</h3><p>Cek data login, token, internet, dan coba tutup-buka aplikasi lalu login ulang.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>TikTok tidak connect</h3><p>Pastikan username benar, akun sedang live, lalu Stop Engine dan Start Engine lagi.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Chat tidak masuk</h3><p>Pastikan engine connected, Dock terbuka, dan minta teman kirim chat test.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Gift tidak trigger</h3><p>Cek nama gift di rule, condition, tombol simpan, dan apply config jika tersedia.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Game Trigger tidak masuk ke game</h3><p>Pastikan Game Trigger aktif, rule sudah disimpan, window game sedang fokus, lalu test rule lagi. Mulai dari backend Auto dulu sebelum ganti manual.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Tombol game terasa nyangkut</h3><p>Klik tombol <strong>STOP ALL KEYBOARD TRIGGERS</strong>, lalu cek cooldown, hold duration, dan max hold duration agar rule tidak terlalu agresif.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Overlay tidak muncul</h3><p>Copy ulang URL overlay, tempel ulang ke Browser Source, lalu refresh source di OBS.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>OBS tidak connect</h3><p>Aktifkan OBS WebSocket, cek port 4455, cek password, lalu test koneksi lagi.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Music request tidak masuk</h3><p>Cek fitur musik aktif, queue belum penuh, max durasi, blacklist, dan izin request.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Lagu tidak ada suara</h3><p>Buka Dashboard Music dan pastikan panelnya tetap aktif. Sekarang audio diputar dari Dashboard Music, bukan dari overlay OBS. Cek juga slider Volume, mixer Windows, dan output audio aplikasi.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Overlay music tampil tapi tidak bersuara</h3><p>Ini normal di versi terbaru. Overlay music dibuat viewer-only agar tidak ada suara dobel. Suara utama keluar dari Dashboard Music.</p></article>
+          <article class="trouble-card"><h3><span class="dot"></span>Suara dobel saat musik jalan</h3><p>Pastikan tidak ada overlay/player lama yang masih terbuka dengan suara aktif. Cukup gunakan satu Dashboard Music utama sebagai runtime audio.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="faq" data-section>
+        <div class="section-kicker">FAQ</div>
+        <h2>Pertanyaan yang sering muncul</h2>
+        <div class="faq-list" id="faqList">
+          <article class="faq-item open"><button class="faq-question">Apa itu RVTik Stream? <span>+</span></button><div class="faq-answer">RVTik Stream adalah aplikasi desktop untuk menghubungkan event TikTok Live ke Overlay, Dock, Hotkey, OBS, TTLS, dan Music Request.</div></article>
+          <article class="faq-item"><button class="faq-question">Apakah RVTik harus selalu dibuka saat live? <span>+</span></button><div class="faq-answer">Iya. RVTik menjadi jembatan utama agar event live bisa diproses.</div></article>
+          <article class="faq-item"><button class="faq-question">Apakah saya harus login setiap kali? <span>+</span></button><div class="faq-answer">Tidak selalu. Kalau lisensi masih valid, RVTik bisa mencoba login otomatis.</div></article>
+          <article class="faq-item"><button class="faq-question">Apa itu session? <span>+</span></button><div class="faq-answer">Session adalah ID unik untuk menghubungkan dashboard, overlay, dan Dock kamu.</div></article>
+          <article class="faq-item"><button class="faq-question">Kenapa status masih connecting? <span>+</span></button><div class="faq-answer">Biasanya karena akun belum live, username salah, atau koneksi belum stabil.</div></article>
+          <article class="faq-item"><button class="faq-question">Durasi kosong artinya apa? <span>+</span></button><div class="faq-answer">Default 3 detik. Durasi 0 juga dianggap 3 detik.</div></article>
+          <article class="faq-item"><button class="faq-question">Apa beda Hotkey dan Game Trigger? <span>+</span></button><div class="faq-answer">Hotkey dipakai untuk shortcut aplikasi seperti OBS atau TikTok Live Studio. Game Trigger dipakai untuk mengirim input keyboard langsung ke game, emulator, atau window aktif. Jadi Hotkey bukan Action Mode Game Trigger.</div></article>
+          <article class="faq-item"><button class="faq-question">Kenapa Game Trigger tidak jalan di game? <span>+</span></button><div class="faq-answer">Biasanya karena window game tidak aktif, backend keyboard belum cocok, rule belum disimpan, atau game membatasi input otomatis. Coba test dulu di aplikasi sederhana seperti Notepad.</div></article>
+          <article class="faq-item"><button class="faq-question">Kenapa OBS action tidak jalan? <span>+</span></button><div class="faq-answer">Cek koneksi OBS, port/password, nama scene/source, dan pastikan config sudah di-apply.</div></article>
+          <article class="faq-item"><button class="faq-question">Bagaimana cara request lagu? <span>+</span></button><div class="faq-answer">Penonton bisa mengetik !play judul lagu atau !req judul lagu, sesuai setting yang kamu aktifkan.</div></article>
+          <article class="faq-item"><button class="faq-question">Kenapa overlay music tidak mengeluarkan suara? <span>+</span></button><div class="faq-answer">Itu normal. Di versi terbaru, overlay music hanya untuk visual. Audio utama diputar dari Dashboard Music agar tidak terjadi suara dobel dari OBS Browser Source.</div></article>
+          <article class="faq-item"><button class="faq-question">Bolehkah Dashboard Music ditutup saat lagu berjalan? <span>+</span></button><div class="faq-answer">Sebaiknya jangan. Dashboard Music sekarang menjadi audio runtime utama. Kalau ditutup atau di-reload, lagu bisa berhenti sebentar atau mulai ulang saat runtime lain mengambil alih.</div></article>
+          <article class="faq-item"><button class="faq-question">Kalau Dashboard Music terbuka dua kali, apakah suara jadi dobel? <span>+</span></button><div class="faq-answer">Tidak seharusnya. RVTik memakai single runtime guard, jadi hanya satu Dashboard Music yang memutar audio. Jendela lain tetap bisa dipakai sebagai controller.</div></article>
+          <article class="faq-item"><button class="faq-question">Kenapa lagu ditolak? <span>+</span></button><div class="faq-answer">Biasanya karena terlalu panjang, queue penuh, kena blacklist, atau user belum memenuhi syarat.</div></article>
+          <article class="faq-item"><button class="faq-question">Kapan harus hubungi support? <span>+</span></button><div class="faq-answer">Kalau login gagal terus, app crash berulang, event tidak masuk sama sekali, atau config terus hilang.</div></article>
+        </div>
+      </section>
+
+      <section class="section" id="glosarium" data-section>
+        <div class="section-kicker">Glosarium</div>
+        <h2>Istilah yang sering muncul</h2>
+        <div class="glossary">
+          <div><strong>Overlay</strong><span>Tampilan visual yang muncul di live.</span></div>
+          <div><strong>Dock</strong><span>Panel untuk memantau event live secara real-time.</span></div>
+          <div><strong>Dashboard</strong><span>Panel utama untuk mengatur fitur RVTik.</span></div>
+          <div><strong>Connector</strong><span>Bagian yang mengambil event dari TikTok Live.</span></div>
+          <div><strong>WebSocket</strong><span>Jalur komunikasi real-time agar data cepat sampai.</span></div>
+          <div><strong>OBS</strong><span>Software streaming yang sering dipakai kreator.</span></div>
+          <div><strong>TTLS</strong><span>TikTok Live Studio.</span></div>
+          <div><strong>Rule</strong><span>Aturan otomatis yang kamu buat.</span></div>
+          <div><strong>Trigger</strong><span>Pemicu yang membuat rule berjalan.</span></div>
+          <div><strong>Game Trigger</strong><span>Fitur untuk mengirim input keyboard ke game, emulator, atau window aktif dari event TikTok Live.</span></div>
+          <div><strong>Action Mode</strong><span>Cara Game Trigger mengirim tombol, misalnya Press Once, Hold, Repeat, Combo, atau Sequence.</span></div>
+          <div><strong>Hotkey</strong><span>Shortcut untuk aplikasi seperti OBS atau TikTok Live Studio, bukan input gameplay langsung ke game.</span></div>
+          <div><strong>Queue</strong><span>Antrean agar trigger atau lagu tidak saling tabrak.</span></div>
+          <div><strong>Dashboard Music</strong><span>Panel kontrol musik yang juga menjadi pemutar audio utama.</span></div>
+          <div><strong>Audio Runtime</strong><span>Bagian yang benar-benar memutar audio lagu.</span></div>
+          <div><strong>Viewer Only</strong><span>Mode overlay yang hanya menampilkan visual tanpa mengeluarkan suara.</span></div>
+          <div><strong>Single Runtime</strong><span>Sistem agar hanya satu Dashboard Music yang aktif memutar audio.</span></div>
+          <div><strong>Duration</strong><span>Lama waktu efek atau aksi aktif.</span></div>
+          <div><strong>Revert</strong><span>Kembali ke kondisi semula setelah durasi selesai.</span></div>
+        </div>
+      </section>
+
+      <section class="section" id="support" data-section>
+        <div class="section-kicker">Kontak Support</div>
+        <h2>Kalau masih belum beres, kirim info ini</h2>
+        <p>Saat menghubungi support, kirim info yang jelas supaya pengecekan lebih cepat.</p>
+        <ul>
+          <li>Versi aplikasi RVTik.</li>
+          <li>Fitur yang bermasalah.</li>
+          <li>Gejala masalah.</li>
+          <li>Langkah yang sudah kamu coba.</li>
+          <li>Screenshot atau video pendek jika memungkinkan.</li>
+        </ul>
+        <div class="tip"><strong>Contoh pesan:</strong> “Halo, saya pakai RVTik Stream. Connector sudah connected, chat masuk ke Dock, tapi OBS trigger belum jalan. Saya sudah cek port, password, dan apply config. Mohon bantu cek langkah berikutnya.”</div>
+      </section>
+
+      <p class="footer">RVTik Stream Pro — Panduan pengguna. Mulai dari dasar dulu, lalu tambah fitur sedikit demi sedikit.</p>
+    </main>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+    const sections = Array.from(document.querySelectorAll('[data-section]'));
+    const searchInput = document.getElementById('searchInput');
+
+    menuBtn?.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        navLinks.forEach((link) => link.classList.remove('active'));
+        active?.classList.add('active');
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+
+    sections.forEach((section) => observer.observe(section));
+
+    document.querySelectorAll('.faq-question').forEach((button) => {
+      button.addEventListener('click', () => {
+        button.closest('.faq-item').classList.toggle('open');
+      });
+    });
+
+    function clearMarks(root) {
+      root.querySelectorAll('mark').forEach((mark) => {
+        mark.replaceWith(document.createTextNode(mark.textContent));
+      });
+    }
+
+    function highlightText(node, term) {
+      if (!term || node.nodeType !== Node.TEXT_NODE) return;
+      const value = node.nodeValue;
+      const index = value.toLowerCase().indexOf(term.toLowerCase());
+      if (index === -1) return;
+      const span = document.createElement('span');
+      span.append(document.createTextNode(value.slice(0, index)));
+      const mark = document.createElement('mark');
+      mark.textContent = value.slice(index, index + term.length);
+      span.append(mark);
+      span.append(document.createTextNode(value.slice(index + term.length)));
+      node.replaceWith(span);
+    }
+
+    searchInput?.addEventListener('input', (event) => {
+      const term = event.target.value.trim();
+      sections.forEach((section) => {
+        clearMarks(section);
+        const text = section.textContent.toLowerCase();
+        const visible = !term || text.includes(term.toLowerCase());
+        section.style.display = visible ? '' : 'none';
+        if (visible && term) {
+          const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT);
+          const textNodes = [];
+          while (walker.nextNode()) textNodes.push(walker.currentNode);
+          textNodes.slice(0, 12).forEach((node) => highlightText(node, term));
+        }
+      });
+    });
+  </script>
+</body>
+</html>
