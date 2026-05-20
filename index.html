@@ -689,11 +689,12 @@
         <a class="nav-link" href="#obs"><span>OBS Automation</span><small>10</small></a>
         <a class="nav-link" href="#ttls"><span>TTLS Automation</span><small>11</small></a>
         <a class="nav-link" href="#music"><span>Music Request</span><small>12</small></a>
-        <a class="nav-link" href="#pengaturan"><span>Pengaturan</span><small>13</small></a>
-        <a class="nav-link" href="#troubleshooting"><span>Troubleshooting</span><small>14</small></a>
-        <a class="nav-link" href="#faq"><span>FAQ</span><small>15</small></a>
-        <a class="nav-link" href="#glosarium"><span>Glosarium</span><small>16</small></a>
-        <a class="nav-link" href="#support"><span>Kontak Support</span><small>17</small></a>
+        <a class="nav-link" href="#auto-subtitle"><span>Auto Subtitle</span><small>13</small></a>
+        <a class="nav-link" href="#pengaturan"><span>Pengaturan</span><small>14</small></a>
+        <a class="nav-link" href="#troubleshooting"><span>Troubleshooting</span><small>15</small></a>
+        <a class="nav-link" href="#faq"><span>FAQ</span><small>16</small></a>
+        <a class="nav-link" href="#glosarium"><span>Glosarium</span><small>17</small></a>
+        <a class="nav-link" href="#support"><span>Kontak Support</span><small>18</small></a>
       </nav>
     </aside>
 
@@ -1144,6 +1145,47 @@
           <span class="pill">!cancel</span>
         </div>
 
+        <h3>Filter pencarian lagu</h3>
+        <p>
+          Sekarang Music Request punya <strong>Music Search Filter</strong> agar hasil pencarian lagu lebih rapi.
+          Tujuannya supaya RVTik tidak asal mengambil hasil pertama, lalu lebih sering memilih versi official, topic, audio resmi, atau video musik resmi jika tersedia.
+        </p>
+        <div class="feature-list">
+          <div class="feature-item"><strong>Mode Bebas</strong>Cocok jika kamu ingin hasil pencarian lebih longgar, mirip perilaku lama.</div>
+          <div class="feature-item"><strong>Prioritaskan Official</strong>Mode paling aman untuk kebanyakan user. Hasil official dinaikkan prioritasnya, tapi masih bisa fallback ke hasil lain yang layak.</div>
+          <div class="feature-item"><strong>Hanya Official</strong>Hanya menerima hasil official, topic, VEVO, official audio, atau official music video.</div>
+          <div class="feature-item"><strong>Blokir hasil kurang cocok</strong>Bisa menyaring cover, karaoke, reaction, tutorial, sped up, slowed, kompilasi, dan video terlalu panjang.</div>
+          <div class="feature-item"><strong>Batas durasi</strong>Kamu bisa atur durasi minimal dan maksimal agar hasil aneh atau video terlalu panjang tidak masuk queue.</div>
+        </div>
+
+        <h3>Preset filter yang tersedia</h3>
+        <div class="pill-row">
+          <span class="pill">Bebas</span>
+          <span class="pill">Aman / Official</span>
+          <span class="pill">Ketat / Official Only</span>
+        </div>
+        <p>
+          Kalau bingung mulai dari mana, pakai preset <strong>Aman / Official</strong>. Preset ini dibuat untuk mayoritas streamer:
+          hasil official diprioritaskan, tapi request masih tetap fleksibel jika versi official tidak ditemukan.
+        </p>
+        <ol>
+          <li><strong>Bebas</strong> cocok untuk room santai yang ingin menerima banyak variasi hasil pencarian.</li>
+          <li><strong>Aman / Official</strong> cocok untuk live normal agar hasil lagu lebih bersih dan minim karaoke atau cover.</li>
+          <li><strong>Ketat / Official Only</strong> cocok jika kamu ingin hasil request lebih disiplin dan hanya menerima sumber official.</li>
+        </ol>
+
+        <h3>Contoh penggunaan filter</h3>
+        <div class="steps">
+          <div class="step"><div><strong>Request lagu umum</strong><p>Jika viewer mengetik <strong>!play Hindia Evaluasi</strong>, mode Aman / Official akan berusaha memilih hasil Topic, channel official, atau official audio/video jika ada.</p></div></div>
+          <div class="step"><div><strong>Hindari karaoke</strong><p>Kalau <strong>Blokir Karaoke</strong> aktif, hasil dengan judul atau channel yang mengarah ke karaoke akan ditolak.</p></div></div>
+          <div class="step"><div><strong>Atur remix sesuai kebutuhan</strong><p>Jika <strong>Blokir Remix</strong> dimatikan, hasil remix masih boleh masuk. Kalau diaktifkan, hasil remix akan ikut disaring.</p></div></div>
+          <div class="step"><div><strong>Batasi durasi</strong><p>Kalau kamu set maksimal 600 detik, video yang terlalu panjang seperti full album atau kompilasi bisa ikut ditolak.</p></div></div>
+        </div>
+        <div class="tip">
+          <strong>Saran simpel:</strong>
+          Kalau kamu sering dapat hasil cover, karaoke, atau video panjang, mulai dari preset <strong>Aman / Official</strong>, lalu aktifkan blokir yang kamu perlukan satu per satu.
+        </div>
+
         <h3>Checklist sebelum live pakai Music Request</h3>
         <ol>
           <li>Pastikan Dashboard Music terbuka.</li>
@@ -1151,6 +1193,92 @@
           <li>Test satu lagu sebelum live ramai.</li>
           <li>Pastikan overlay music muncul di OBS, tapi tidak mengeluarkan suara dobel.</li>
           <li>Test skip dan tunggu lagu selesai untuk memastikan auto-next berjalan.</li>
+        </ol>
+      </section>
+
+      <section class="section" id="auto-subtitle" data-section>
+        <div class="section-kicker">Auto Subtitle</div>
+        <h2>Subtitle realtime untuk OBS dan TikTok Live Studio</h2>
+        <p>
+          <strong>RVTik Auto Subtitle</strong> adalah fitur speech-to-text realtime untuk menampilkan caption dari suara kamu.
+          Fitur ini fokus ke <strong>subtitle original</strong>, jadi teks yang tampil mengikuti bahasa yang kamu ucapkan dan tidak diterjemahkan.
+        </p>
+        <div class="tip">
+          <strong>Penting:</strong>
+          Pilih bahasa sesuai yang kamu ucapkan. Auto Subtitle saat ini tidak menerjemahkan bahasa, jadi hasil terbaik didapat kalau bahasa recognition sesuai input suara kamu.
+        </div>
+
+        <div class="feature-list">
+          <div class="feature-item"><strong>Controller Subtitle</strong>Panel untuk memilih mic, bahasa, start/stop subtitle, preview, dan edit style.</div>
+          <div class="feature-item"><strong>Overlay Subtitle</strong>Halaman viewer-only yang dipasang ke OBS atau TikTok Live Studio untuk menampilkan teks realtime.</div>
+          <div class="feature-item"><strong>Realtime Speech-to-Text</strong>Teks muncul mengikuti suara dari mic yang sedang dipakai di browser.</div>
+          <div class="feature-item"><strong>Style Editor</strong>Atur ukuran font, warna, posisi, background, animasi, dan tampilan subtitle sesuai tema live kamu.</div>
+          <div class="feature-item"><strong>Text-Only Mode</strong>Kalau background opacity diatur ke 0, subtitle akan tampil tanpa kotak background kosong.</div>
+        </div>
+
+        <h3>Cara pakai Auto Subtitle</h3>
+        <div class="steps">
+          <div class="step"><div><strong>Buka controller subtitle</strong><p>Buka halaman controller Auto Subtitle dari browser Chrome atau Edge. Di sinilah mic dan subtitle dikendalikan.</p></div></div>
+          <div class="step"><div><strong>Izinkan mic</strong><p>Saat browser meminta izin mikrofon, klik <strong>Allow</strong> agar speech recognition bisa berjalan.</p></div></div>
+          <div class="step"><div><strong>Pilih mic input</strong><p>Gunakan mic yang memang kamu pakai saat live agar teks lebih stabil.</p></div></div>
+          <div class="step"><div><strong>Pilih Recognition Language</strong><p>Sesuaikan dengan bahasa yang kamu ucapkan. Misalnya Indonesia pilih <strong>id-ID</strong>, kalau bahasa Inggris pilih <strong>en-US</strong> atau <strong>en-GB</strong>.</p></div></div>
+          <div class="step"><div><strong>Buka overlay subtitle</strong><p>Salin link overlay subtitle lalu pasang ke Browser Source OBS atau ke scene yang kamu pakai.</p></div></div>
+          <div class="step"><div><strong>Klik Start dan bicara</strong><p>Setelah aktif, subtitle akan muncul realtime di preview controller dan overlay subtitle.</p></div></div>
+        </div>
+
+        <h3>Bahasa recognition yang tersedia</h3>
+        <div class="pill-row">
+          <span class="pill">id-ID — Indonesia</span>
+          <span class="pill">en-US — English (US)</span>
+          <span class="pill">en-GB — English (UK)</span>
+          <span class="pill">ja-JP — Japanese</span>
+          <span class="pill">ko-KR — Korean</span>
+          <span class="pill">zh-CN — Chinese</span>
+          <span class="pill">es-ES — Spanish</span>
+          <span class="pill">ar-SA — Arabic</span>
+        </div>
+
+        <h3>Style subtitle yang bisa diatur</h3>
+        <div class="feature-list">
+          <div class="feature-item"><strong>Font Size</strong>Ukuran font bisa diatur dengan batas minimal 12px agar tetap terbaca.</div>
+          <div class="feature-item"><strong>Font Style</strong>Pilih gaya teks normal atau italic.</div>
+          <div class="feature-item"><strong>Text Transform</strong>Bisa dibuat normal, uppercase, lowercase, atau capitalize.</div>
+          <div class="feature-item"><strong>Letter Spacing</strong>Atur jarak antar huruf agar subtitle terasa lebih rapat atau lebih lega.</div>
+          <div class="feature-item"><strong>Line Height</strong>Atur tinggi antar baris supaya subtitle panjang tetap nyaman dibaca.</div>
+          <div class="feature-item"><strong>Posisi & Align</strong>Subtitle bisa diatur center, kiri, kanan, dan posisi vertikal sesuai layout scene kamu.</div>
+        </div>
+
+        <h3>Animasi subtitle</h3>
+        <div class="pill-row">
+          <span class="pill">none</span>
+          <span class="pill">fade</span>
+          <span class="pill">slide-up</span>
+          <span class="pill">pop</span>
+          <span class="pill">typewriter</span>
+        </div>
+        <p>
+          Kamu bisa menambahkan animasi saat subtitle berubah. Kalau ingin lebih halus, gunakan <strong>fade</strong> atau <strong>slide-up</strong>.
+          Kalau ingin lebih playful, coba <strong>pop</strong> atau <strong>typewriter</strong>. Durasi animasi juga bisa diatur sesuai kebutuhan.
+        </p>
+        <div class="tip">
+          <strong>Tips visual:</strong>
+          Kalau live kamu ramai, gunakan animasi ringan dengan durasi singkat agar subtitle tetap enak dibaca dan tidak terasa terlalu ramai di layar.
+        </div>
+
+        <h3>Mode text-only tanpa background box</h3>
+        <p>
+          Jika kamu ingin subtitle tampak bersih tanpa kotak, atur <strong>Background Opacity</strong> ke <strong>0</strong>.
+          Dengan mode ini, background benar-benar hilang, blur dimatikan, border disembunyikan, dan subtitle tampil sebagai teks saja.
+        </p>
+
+        <h3>Checklist singkat sebelum live pakai Auto Subtitle</h3>
+        <ol>
+          <li>Pastikan controller subtitle dibuka di Chrome atau Edge.</li>
+          <li>Pastikan izin mic sudah diberikan.</li>
+          <li>Pilih mic dan Recognition Language yang sesuai.</li>
+          <li>Test satu dua kalimat sebelum live ramai.</li>
+          <li>Ubah style subtitle lalu klik apply sampai preview dan overlay terasa pas.</li>
+          <li>Kalau ingin tampilan bersih, set Background Opacity ke 0 untuk mode text-only.</li>
         </ol>
       </section>
 
